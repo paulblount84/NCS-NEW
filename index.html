@@ -201,7 +201,7 @@
   /* ABOUT */
   .about-grid{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
     gap:28px;
     max-width:1200px;
     margin:0 auto;
@@ -243,6 +243,52 @@
     text-align:center;
     font-size:1.05rem;
     color:#5a4d47;
+  }
+
+  /* WEEKLY SCHEDULE CARD */
+  .schedule-list{
+    list-style:none;
+    text-align:left;
+    margin-top:6px;
+  }
+  .schedule-list li{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:9px 0;
+    border-bottom:1px solid var(--grey-line);
+    font-family:'Trebuchet MS',sans-serif;
+    font-size:0.92rem;
+    color:var(--ink);
+  }
+  .schedule-list li:last-child{
+    border-bottom:none;
+  }
+  .day-tag{
+    display:inline-block;
+    padding:4px 14px;
+    border-radius:20px;
+    font-size:0.8rem;
+    font-weight:700;
+    letter-spacing:0.5px;
+  }
+  .day-tag.home{
+    background:#f3eee9;
+    color:#9a8b84;
+  }
+  .day-tag.campus{
+    background:var(--red);
+    color:#fff;
+    box-shadow:0 0 0 0 rgba(200,16,46,0.55);
+    animation:campus-pulse 2.4s ease-out infinite;
+  }
+  @keyframes campus-pulse{
+    0%   { box-shadow:0 0 0 0 rgba(200,16,46,0.55); }
+    70%  { box-shadow:0 0 0 8px rgba(200,16,46,0); }
+    100% { box-shadow:0 0 0 0 rgba(200,16,46,0); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .day-tag.campus{ animation:none; box-shadow:0 0 0 4px rgba(200,16,46,0.15); }
   }
 
   /* VIDEO PLACEHOLDER */
@@ -761,6 +807,17 @@
       <div class="icon">F</div>
       <h3>Family Focused</h3>
       <p>We partner closely with parents through open communication, family events, and a welcoming community where every family feels known and valued.</p>
+    </div>
+    <div class="about-card schedule-card">
+      <div class="icon">S</div>
+      <h3>Weekly Schedule</h3>
+      <ul class="schedule-list">
+        <li><span>Monday</span><span class="day-tag home">Home</span></li>
+        <li><span>Tuesday</span><span class="day-tag campus">Campus</span></li>
+        <li><span>Wednesday</span><span class="day-tag campus">Campus</span></li>
+        <li><span>Thursday</span><span class="day-tag home">Home</span></li>
+        <li><span>Friday</span><span class="day-tag campus">Campus</span></li>
+      </ul>
     </div>
   </div>
   <div class="video-placeholder">
