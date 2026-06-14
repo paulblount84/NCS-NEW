@@ -576,13 +576,113 @@
     opacity:0.85;
   }
 
+  /* MOBILE MENU TOGGLE */
+  .menu-toggle{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:8px;
+  }
+  .menu-toggle span{
+    display:block;
+    width:24px;
+    height:3px;
+    background:var(--red);
+    border-radius:2px;
+    transition:transform 0.2s, opacity 0.2s;
+  }
+  .menu-toggle.open span:nth-child(1){ transform:translateY(8px) rotate(45deg); }
+  .menu-toggle.open span:nth-child(2){ opacity:0; }
+  .menu-toggle.open span:nth-child(3){ transform:translateY(-8px) rotate(-45deg); }
+
   /* RESPONSIVE */
   @media (max-width: 900px){
     .about-grid, .staff-grid, .tuition-grid{ grid-template-columns:repeat(2,1fr); }
     .admissions-wrap{ grid-template-columns:1fr; }
     .donate-grid{ grid-template-columns:repeat(2,1fr); }
-    .nav-links{ display:none; }
+    .menu-toggle{ display:flex; }
+    .nav-links{
+      display:none;
+      position:absolute;
+      top:100%;
+      left:0;
+      right:0;
+      flex-direction:column;
+      background:#fff;
+      border-bottom:1px solid var(--grey-line);
+      padding:8px 6% 16px;
+      gap:0;
+      box-shadow:0 8px 16px rgba(0,0,0,0.05);
+    }
+    .nav-links.open{ display:flex; }
+    .nav-links li{
+      border-top:1px solid var(--grey-line);
+    }
+    .nav-links a{
+      display:block;
+      padding:14px 4px;
+    }
     .hero h1{ font-size:2.2rem; }
+  }
+
+  @media (max-width: 600px){
+    nav{ padding:14px 5%; }
+    .brand span{ font-size:1.05rem; }
+    .brand img{ height:40px; }
+
+    .hero{ padding:56px 6% 56px; }
+    .hero img.crest{ height:130px; margin-bottom:18px; }
+    .hero h1{ font-size:1.7rem; line-height:1.2; }
+    .hero p.tagline{ font-size:1.05rem; }
+    .hero-buttons{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:center;
+    }
+    .hero-buttons a{
+      width:100%;
+      max-width:280px;
+      margin:0;
+      text-align:center;
+    }
+
+    section{ padding:48px 6%; }
+    .section-header{ margin-bottom:32px; }
+    .section-header h2{ font-size:1.7rem; }
+
+    .about-grid, .staff-grid, .tuition-grid, .donate-grid{
+      grid-template-columns:1fr;
+      gap:18px;
+    }
+    .about-card{ padding:26px 20px; }
+    .about-intro{ font-size:0.98rem; margin-bottom:32px; }
+
+    .video-placeholder{ margin-top:32px; border-radius:8px; }
+    .video-icon{ width:48px; height:48px; font-size:1.1rem; }
+
+    .stats-banner{ margin-top:36px; padding-top:32px; gap:28px; }
+    .stat-number{ font-size:2.4rem; }
+
+    .admissions-wrap{ gap:32px; }
+    .steps li{ gap:14px; margin-bottom:22px; }
+    .steps li::before{ width:34px; height:34px; font-size:0.9rem; }
+    .admissions-card{ padding:28px 22px; }
+
+    .tuition-card{ padding:26px 20px; }
+    .tuition-amount{ font-size:2rem; }
+    .tuition-note{ padding-top:28px; }
+
+    .staff-photo{ width:100px; height:100px; font-size:1.4rem; }
+
+    .donate-card{ padding:24px 14px; }
+    .donate-card .amount{ font-size:1.6rem; }
+    .donate-custom{ width:100%; max-width:280px; }
+
+    footer{ padding:32px 6%; }
   }
 </style>
 </head>
@@ -593,13 +693,16 @@
     <img src="logo.png" alt="NCS Crest">
     <span>Northridge Community School</span>
   </div>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
     <li><a href="#admissions">Admissions</a></li>
     <li><a href="#tuition">Tuition</a></li>
     <li><a href="#staff">Staff</a></li>
     <li><a href="#donate">Donate</a></li>
   </ul>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <section class="hero">
@@ -855,6 +958,24 @@
     const el = document.getElementById(id);
     if (el) animateCounter(el);
   });
+
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 </script>
 
 </body>
