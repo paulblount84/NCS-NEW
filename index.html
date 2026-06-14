@@ -320,6 +320,61 @@
     font-weight:700;
   }
 
+  /* TUITION */
+  .tuition-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:32px;
+    max-width:800px;
+    margin:0 auto 32px;
+  }
+  .tuition-card{
+    background:#fdf6f2;
+    border:1px solid var(--grey-line);
+    border-radius:10px;
+    padding:32px 28px;
+    text-align:center;
+  }
+  .tuition-grade{
+    font-family:'Trebuchet MS',sans-serif;
+    font-weight:700;
+    color:var(--ink);
+    font-size:1.05rem;
+    margin-bottom:12px;
+  }
+  .tuition-amount{
+    font-family:'Trebuchet MS',sans-serif;
+    font-weight:700;
+    font-size:2.4rem;
+    color:var(--red);
+    margin-bottom:14px;
+  }
+  .tuition-amount span{
+    font-size:1rem;
+    font-weight:600;
+    color:var(--bronze);
+  }
+  .tuition-card p{
+    font-size:0.92rem;
+    color:#6b5e58;
+  }
+  .tuition-note{
+    max-width:760px;
+    margin:0 auto;
+    text-align:center;
+    border-top:1px solid var(--grey-line);
+    padding-top:32px;
+  }
+  .tuition-note h3{
+    color:var(--red);
+    font-size:1.2rem;
+    margin-bottom:10px;
+  }
+  .tuition-note p{
+    font-size:0.95rem;
+    color:#5a4d47;
+  }
+
   /* STAFF */
   .staff-grid{
     display:grid;
@@ -441,7 +496,7 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px){
-    .about-grid, .staff-grid{ grid-template-columns:repeat(2,1fr); }
+    .about-grid, .staff-grid, .tuition-grid{ grid-template-columns:repeat(2,1fr); }
     .admissions-wrap{ grid-template-columns:1fr; }
     .donate-grid{ grid-template-columns:repeat(2,1fr); }
     .nav-links{ display:none; }
@@ -459,6 +514,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#admissions">Admissions</a></li>
+    <li><a href="#tuition">Tuition</a></li>
     <li><a href="#staff">Staff</a></li>
     <li><a href="#donate">Donate</a></li>
   </ul>
@@ -494,7 +550,7 @@
     <div class="about-card">
       <div class="icon">A</div>
       <h3>Great Academics</h3>
-      <p>A rigorous, well-rounded curriculum from kindergarten through high school taught by dedicated educators.</p>
+      <p>A rigorous, well-rounded curriculum from kindergarten through eighth grade taught by dedicated educators.</p>
     </div>
     <div class="about-card">
       <div class="icon">C</div>
@@ -532,7 +588,13 @@
       <li>
         <div>
           <h3>Complete Your Application</h3>
-          <p>Submit transcripts, references, and required forms through our secure online portal.</p>
+          <p>Submit transcripts, a pastoral reference, and required forms through our secure online portal.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Interview</h3>
+          <p>Meet with our admissions team for a brief interview as part of the application process.</p>
         </div>
       </li>
       <li>
@@ -548,11 +610,34 @@
         <li><span>Application Fee</span><span>$50</span></li>
         <li><span>Kindergarten – Grade 5</span><span>Open</span></li>
         <li><span>Grade 6 – Grade 8</span><span>Open</span></li>
-        <li><span>Grade 9 – Grade 12</span><span>Limited Seats</span></li>
         <li><span>Application Deadline</span><span>March 1</span></li>
       </ul>
       <a href="#">Start Your Application</a>
     </div>
+  </div>
+</section>
+
+<section id="tuition">
+  <div class="section-header">
+    <span class="eyebrow">Investing in Your Child</span>
+    <h2>Tuition</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="tuition-grid">
+    <div class="tuition-card">
+      <div class="tuition-grade">Kindergarten – Grade 5</div>
+      <div class="tuition-amount">$4,500<span>/year</span></div>
+      <p>Can be paid in full or spread across 10 monthly payments for added flexibility.</p>
+    </div>
+    <div class="tuition-card">
+      <div class="tuition-grade">Grade 6 – Grade 8</div>
+      <div class="tuition-amount">$5,000<span>/year</span></div>
+      <p>Can be paid in full or spread across 10 monthly payments for added flexibility.</p>
+    </div>
+  </div>
+  <div class="tuition-note">
+    <h3>Tuition Support</h3>
+    <p>We believe a Northridge education should be within reach for every family. Tuition assistance is available on a case-by-case basis — please contact our admissions office to discuss your family's needs.</p>
   </div>
 </section>
 
