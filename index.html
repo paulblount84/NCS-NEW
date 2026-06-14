@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Northridge Community School</title>
+<style>
+  :root{
+    --red:#C8102E;
+    --bronze:#B07D4F;
+    --bronze-light:#D9B48F;
+    --cream:#FFFFFF;
+    --ink:#3A2E2A;
+    --grey-line:#E6E1DC;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  body{
+    font-family:'Georgia','Times New Roman',serif;
+    color:var(--ink);
+    background:#fff;
+    line-height:1.6;
+  }
+
+  h1,h2,h3{
+    font-family:'Trebuchet MS','Helvetica Neue',sans-serif;
+    font-weight:700;
+    letter-spacing:0.5px;
+  }
+
+  /* NAV */
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 6%;
+    background:#fff;
+    border-bottom:1px solid var(--grey-line);
+    position:sticky;
+    top:0;
+    z-index:100;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .brand img{
+    height:48px;
+  }
+  .brand span{
+    font-size:1.25rem;
+    color:var(--red);
+    font-weight:700;
+  }
+  .nav-links{
+    display:flex;
+    gap:32px;
+    list-style:none;
+  }
+  .nav-links a{
+    text-decoration:none;
+    color:var(--ink);
+    font-family:'Trebuchet MS',sans-serif;
+    font-size:0.95rem;
+    font-weight:600;
+    transition:color 0.2s;
+  }
+  .nav-links a:hover{ color:var(--red); }
+
+  /* HERO */
+  .hero{
+    text-align:center;
+    padding:90px 6% 80px;
+    background:linear-gradient(180deg, #fff 0%, #fdf6f2 100%);
+  }
+  .hero img.crest{
+    height:140px;
+    margin-bottom:24px;
+  }
+  .hero h1{
+    font-size:3rem;
+    color:var(--red);
+    margin-bottom:14px;
+  }
+  .hero p.tagline{
+    font-family:Georgia, serif;
+    font-style:italic;
+    font-size:1.25rem;
+    margin-bottom:34px;
+    position:relative;
+    display:inline-block;
+    background:linear-gradient(
+      100deg,
+      var(--bronze) 0%,
+      var(--bronze) 35%,
+      var(--red) 50%,
+      var(--bronze) 65%,
+      var(--bronze) 100%
+    );
+    background-size:250% 100%;
+    background-position:100% 0;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:shimmer 7s ease-in-out infinite;
+  }
+  .hero p.tagline::after{
+    content:"✦";
+    position:absolute;
+    right:-26px;
+    top:50%;
+    transform:translateY(-50%) scale(0);
+    color:var(--red);
+    font-size:1.1rem;
+    text-shadow:0 0 6px #fff, 0 0 12px var(--bronze-light);
+    animation:sparkle-pop 7s ease-in-out infinite;
+  }
+  @keyframes shimmer{
+    0%   { background-position:160% 0; }
+    55%  { background-position:-40% 0; }
+    100% { background-position:-40% 0; }
+  }
+  @keyframes sparkle-pop{
+    0%, 48%   { opacity:0; transform:translateY(-50%) scale(0.3); }
+    58%       { opacity:1; transform:translateY(-50%) scale(1.3); }
+    68%       { opacity:1; transform:translateY(-50%) scale(1); }
+    85%, 100% { opacity:0; transform:translateY(-50%) scale(0.3); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero p.tagline{ animation:none; background-position:-40% 0; }
+    .hero p.tagline::after{ animation:none; opacity:1; transform:translateY(-50%) scale(1); }
+  }
+  .hero-buttons a{
+    display:inline-block;
+    padding:14px 32px;
+    margin:0 8px;
+    border-radius:6px;
+    font-family:'Trebuchet MS',sans-serif;
+    font-weight:700;
+    text-decoration:none;
+    font-size:0.95rem;
+    transition:transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-primary{
+    background:var(--red);
+    color:#fff;
+  }
+  .btn-secondary{
+    background:#fff;
+    color:var(--bronze);
+    border:2px solid var(--bronze);
+  }
+  .hero-buttons a:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 14px rgba(0,0,0,0.12);
+  }
+
+  /* SECTIONS */
+  section{
+    padding:70px 6%;
+  }
+  .section-alt{
+    background:#fdf6f2;
+    border-top:1px solid var(--grey-line);
+    border-bottom:1px solid var(--grey-line);
+  }
+  .section-header{
+    text-align:center;
+    margin-bottom:48px;
+  }
+  .section-header .eyebrow{
+    display:inline-block;
+    color:var(--bronze);
+    font-family:'Trebuchet MS',sans-serif;
+    font-weight:700;
+    font-size:0.8rem;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .section-header h2{
+    font-size:2.2rem;
+    color:var(--red);
+  }
+  .divider{
+    width:60px;
+    height:4px;
+    background:var(--bronze);
+    margin:16px auto 0;
+    border-radius:2px;
+  }
+
+  /* ABOUT */
+  .about-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:28px;
+    max-width:1200px;
+    margin:0 auto;
+  }
+  .about-card{
+    background:#fff;
+    border:1px solid var(--grey-line);
+    border-radius:10px;
+    padding:32px 24px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.03);
+  }
+  .about-card .icon{
+    width:56px;
+    height:56px;
+    margin:0 auto 16px;
+    border-radius:50%;
+    background:var(--red);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:1.4rem;
+    font-family:'Trebuchet MS',sans-serif;
+    font-weight:700;
+  }
+  .about-card h3{
+    color:var(--ink);
+    margin-bottom:10px;
+    font-size:1.15rem;
+  }
+  .about-card p{
+    font-size:0.95rem;
+    color:#6b5e58;
+  }
+  .about-intro{
+    max-width:760px;
+    margin:0 auto 48px;
+    text-align:center;
+    font-size:1.05rem;
+    color:#5a4d47;
+  }
+
+  /* ADMISSIONS */
+  .admissions-wrap{
+    max-width:1000px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:48px;
+    align-items:start;
+  }
+  .steps{
+    list-style:none;
+    counter-reset:step;
+  }
+  .steps li{
+    counter-increment:step;
+    display:flex;
+    gap:18px;
+    margin-bottom:28px;
+  }
+  .steps li::before{
+    content:counter(step);
+    flex-shrink:0;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:var(--bronze);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Trebuchet MS',sans-serif;
+    font-weight:700;
+  }
+  .steps h3{
+    font-size:1.1rem;
+    margin-bottom:4px;
+    color:var(--ink);
+  }
+  .steps p{
+    font-size:0.95rem;
+    color:#6b5e58;
+  }
+  .admissions-card{
+    background:#fff;
+    border:1px solid var(--grey-line);
+    border-radius:10px;
+    padding:36px 28px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.04);
+  }
+  .admissions-card h3{
+    color:var(--red);
+    margin-bottom:18px;
+    font-size:1.3rem;
+  }
+  .admissions-card ul{
+    list-style:none;
+    margin-bottom:24px;
+  }
+  .admissions-card ul li{
+    padding:8px 0;
+    border-bottom:1px solid var(--grey-line);
+    display:flex;
+    justify-content:space-between;
+    font-size:0.95rem;
+  }
+  .admissions-card ul li span:last-child{
+    color:var(--bronze);
+    font-weight:700;
+  }
+  .admissions-card a{
+    display:block;
+    text-align:center;
+    background:var(--red);
+    color:#fff;
+    padding:14px;
+    border-radius:6px;
+    text-decoration:none;
+    font-family:'Trebuchet MS',sans-serif;
+    font-weight:700;
+  }
+
+  /* STAFF */
+  .staff-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:28px;
+    max-width:1100px;
+    margin:0 auto;
+    justify-content:center;
+  }
+  .staff-card{
+    text-align:center;
+  }
+  .staff-photo{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    margin:0 auto 14px;
+    background:linear-gradient(135deg, var(--bronze-light), var(--bronze));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-family:'Trebuchet MS',sans-serif;
+    font-size:1.6rem;
+    font-weight:700;
+    border:4px solid #fff;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+  }
+  .staff-card h3{
+    font-size:1.05rem;
+    color:var(--ink);
+    margin-bottom:4px;
+  }
+  .staff-card p{
+    font-size:0.88rem;
+    color:var(--bronze);
+    font-family:'Trebuchet MS',sans-serif;
+    font-weight:600;
+  }
+
+  /* DONATE */
+  .donate-section{
+    background:linear-gradient(180deg, #fdf6f2 0%, #fff 100%);
+    text-align:center;
+  }
+  .donate-section p.lead{
+    max-width:640px;
+    margin:0 auto 40px;
+    font-size:1.05rem;
+    color:#5a4d47;
+  }
+  .donate-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+    max-width:900px;
+    margin:0 auto 36px;
+  }
+  .donate-card{
+    background:#fff;
+    border:2px solid var(--grey-line);
+    border-radius:10px;
+    padding:32px 16px;
+    cursor:pointer;
+    transition:border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .donate-card:hover{
+    border-color:var(--red);
+    transform:translateY(-4px);
+    box-shadow:0 8px 18px rgba(0,0,0,0.08);
+  }
+  .donate-card .amount{
+    font-family:'Trebuchet MS',sans-serif;
+    font-size:2rem;
+    font-weight:700;
+    color:var(--red);
+    margin-bottom:6px;
+  }
+  .donate-card .label{
+    font-size:0.85rem;
+    color:var(--bronze);
+    font-weight:600;
+    font-family:'Trebuchet MS',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:1px;
+  }
+  .donate-custom{
+    font-family:'Trebuchet MS',sans-serif;
+    font-weight:700;
+    background:none;
+    border:2px solid var(--bronze);
+    color:var(--bronze);
+    padding:14px 36px;
+    border-radius:6px;
+    font-size:0.95rem;
+    cursor:pointer;
+    transition:all 0.2s;
+  }
+  .donate-custom:hover{
+    background:var(--bronze);
+    color:#fff;
+  }
+
+  /* FOOTER */
+  footer{
+    background:#fdf6f2;
+    border-top:1px solid var(--grey-line);
+    padding:40px 6%;
+    text-align:center;
+    font-size:0.9rem;
+    color:#9a8b84;
+    font-family:'Trebuchet MS',sans-serif;
+  }
+  footer .crest-small{
+    height:50px;
+    margin-bottom:12px;
+    opacity:0.85;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px){
+    .about-grid, .staff-grid{ grid-template-columns:repeat(2,1fr); }
+    .admissions-wrap{ grid-template-columns:1fr; }
+    .donate-grid{ grid-template-columns:repeat(2,1fr); }
+    .nav-links{ display:none; }
+    .hero h1{ font-size:2.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <img src="logo.png" alt="NCS Crest">
+    <span>Northridge Community School</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#admissions">Admissions</a></li>
+    <li><a href="#staff">Staff</a></li>
+    <li><a href="#donate">Donate</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <img class="crest" src="logo.png" alt="Northridge Community School Crest">
+  <h1>Northridge Community School</h1>
+  <p class="tagline">Where Godly Character meets Great Academics</p>
+  <div class="hero-buttons">
+    <a href="#admissions" class="btn-primary">Apply for Admission</a>
+    <a href="#donate" class="btn-secondary">Support Our School</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-header">
+    <span class="eyebrow">Our Community</span>
+    <h2>About NCS</h2>
+    <div class="divider"></div>
+  </div>
+  <p class="about-intro">
+    Northridge Community School is a place where students grow in faith, character, and academic excellence
+    together. We believe every student deserves a nurturing environment that challenges their mind, shapes
+    their heart, and prepares them for a life of purpose.
+  </p>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="icon">G</div>
+      <h3>Godly Character</h3>
+      <p>Daily devotions, biblical teaching, and mentorship help students grow in faith, integrity, and kindness.</p>
+    </div>
+    <div class="about-card">
+      <div class="icon">A</div>
+      <h3>Great Academics</h3>
+      <p>A rigorous, well-rounded curriculum from kindergarten through high school taught by dedicated educators.</p>
+    </div>
+    <div class="about-card">
+      <div class="icon">C</div>
+      <h3>Strong Community</h3>
+      <p>Families, teachers, and students work together to create a supportive home away from home.</p>
+    </div>
+    <div class="about-card">
+      <div class="icon">F</div>
+      <h3>Family Focused</h3>
+      <p>We partner closely with parents through open communication, family events, and a welcoming community where every family feels known and valued.</p>
+    </div>
+  </div>
+</section>
+
+<section id="admissions" class="section-alt">
+  <div class="section-header">
+    <span class="eyebrow">Join Our School</span>
+    <h2>Admissions</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="admissions-wrap">
+    <ol class="steps">
+      <li>
+        <div>
+          <h3>Submit an Inquiry</h3>
+          <p>Fill out our online inquiry form and our admissions team will reach out within two business days.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Tour the Campus</h3>
+          <p>Visit Northridge with your family to meet teachers, see classrooms, and experience our community firsthand.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Complete Your Application</h3>
+          <p>Submit transcripts, references, and required forms through our secure online portal.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Enrollment Decision</h3>
+          <p>Families are notified of admission decisions and next steps for enrollment within two weeks.</p>
+        </div>
+      </li>
+    </ol>
+    <div class="admissions-card">
+      <h3>2026–2027 School Year</h3>
+      <ul>
+        <li><span>Application Fee</span><span>$50</span></li>
+        <li><span>Kindergarten – Grade 5</span><span>Open</span></li>
+        <li><span>Grade 6 – Grade 8</span><span>Open</span></li>
+        <li><span>Grade 9 – Grade 12</span><span>Limited Seats</span></li>
+        <li><span>Application Deadline</span><span>March 1</span></li>
+      </ul>
+      <a href="#">Start Your Application</a>
+    </div>
+  </div>
+</section>
+
+<section id="staff">
+  <div class="section-header">
+    <span class="eyebrow">Meet Our Team</span>
+    <h2>Staff</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="staff-grid">
+    <div class="staff-card">
+      <div class="staff-photo">JH</div>
+      <h3>Mrs. Joan Holder</h3>
+      <p>Head of School, Fourth &amp; Fifth Grade</p>
+    </div>
+    <div class="staff-card">
+      <div class="staff-photo">AB</div>
+      <h3>Mrs. Angela Blount</h3>
+      <p>School Secretary</p>
+    </div>
+    <div class="staff-card">
+      <div class="staff-photo">AP</div>
+      <h3>Mrs. Amber Perez</h3>
+      <p>TK Teacher</p>
+    </div>
+    <div class="staff-card">
+      <div class="staff-photo">SR</div>
+      <h3>Mrs. Shannon Roush</h3>
+      <p>Kinder &amp; First Grade</p>
+    </div>
+    <div class="staff-card">
+      <div class="staff-photo">MM</div>
+      <h3>Mrs. Melinda Mena</h3>
+      <p>Second &amp; Third Grade</p>
+    </div>
+  </div>
+</section>
+
+<section id="donate" class="donate-section">
+  <div class="section-header">
+    <span class="eyebrow">Make a Difference</span>
+    <h2>Donate to NCS</h2>
+    <div class="divider"></div>
+  </div>
+  <p class="lead">
+    Your generosity helps fund scholarships, classroom resources, and campus improvements so every
+    student can experience the Northridge difference. Every gift makes an impact.
+  </p>
+  <div class="donate-grid">
+    <div class="donate-card">
+      <div class="amount">$50</div>
+      <div class="label">Classroom Supplies</div>
+    </div>
+    <div class="donate-card">
+      <div class="amount">$100</div>
+      <div class="label">Library Resources</div>
+    </div>
+    <div class="donate-card">
+      <div class="amount">$500</div>
+      <div class="label">Student Scholarship</div>
+    </div>
+    <div class="donate-card">
+      <div class="amount">$1,000</div>
+      <div class="label">Program Sponsor</div>
+    </div>
+  </div>
+  <button class="donate-custom">Choose Another Amount</button>
+</section>
+
+<footer>
+  <img class="crest-small" src="logo.png" alt="NCS Crest">
+  <p>&copy; 2026 Northridge Community School. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
