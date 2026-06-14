@@ -201,7 +201,7 @@
   /* ABOUT */
   .about-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-columns:repeat(4,1fr);
     gap:28px;
     max-width:1200px;
     margin:0 auto;
@@ -245,32 +245,50 @@
     color:#5a4d47;
   }
 
-  /* WEEKLY SCHEDULE CARD */
-  .schedule-list{
-    list-style:none;
-    text-align:left;
-    margin-top:6px;
+  /* WEEKLY SCHEDULE BAR */
+  .schedule-bar{
+    max-width:1200px;
+    margin:40px auto 0;
+    background:#fdf6f2;
+    border:1px solid var(--grey-line);
+    border-radius:10px;
+    padding:28px 32px;
   }
-  .schedule-list li{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:9px 0;
-    border-bottom:1px solid var(--grey-line);
-    font-family:'Trebuchet MS',sans-serif;
-    font-size:0.92rem;
+  .schedule-bar h3{
+    text-align:center;
     color:var(--ink);
+    font-size:1.1rem;
+    margin-bottom:24px;
   }
-  .schedule-list li:last-child{
-    border-bottom:none;
+  .schedule-table{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:0 16px;
+  }
+  .schedule-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+  }
+  .schedule-item .day-name{
+    font-family:'Trebuchet MS',sans-serif;
+    font-weight:700;
+    font-size:0.95rem;
+    color:var(--ink);
+    padding-bottom:14px;
+    border-bottom:1px solid var(--grey-line);
+    width:100%;
+    text-align:center;
   }
   .day-tag{
     display:inline-block;
-    padding:4px 14px;
+    padding:5px 18px;
     border-radius:20px;
     font-size:0.8rem;
     font-weight:700;
     letter-spacing:0.5px;
+    font-family:'Trebuchet MS',sans-serif;
   }
   .day-tag.home{
     background:#f3eee9;
@@ -672,6 +690,9 @@
       padding:14px 4px;
     }
     .hero h1{ font-size:2.2rem; }
+    .schedule-table{ gap:0 8px; }
+    .schedule-item .day-name{ font-size:0.85rem; }
+    .day-tag{ padding:5px 12px; font-size:0.75rem; }
   }
 
   @media (max-width: 600px){
@@ -709,6 +730,29 @@
 
     .video-placeholder{ margin-top:32px; border-radius:8px; }
     .video-icon{ width:48px; height:48px; font-size:1.1rem; }
+
+    .schedule-bar{ padding:22px 20px; margin-top:28px; }
+    .schedule-table{
+      display:flex;
+      flex-direction:column;
+    }
+    .schedule-item{
+      flex-direction:row;
+      align-items:center;
+      justify-content:space-between;
+      gap:0;
+      padding:12px 0;
+      border-bottom:1px solid var(--grey-line);
+    }
+    .schedule-item:last-child{
+      border-bottom:none;
+    }
+    .schedule-item .day-name{
+      border-bottom:none;
+      padding-bottom:0;
+      width:auto;
+      text-align:left;
+    }
 
     .stats-banner{ margin-top:36px; padding-top:32px; gap:28px; }
     .stat-number{ font-size:2.4rem; }
@@ -808,16 +852,15 @@
       <h3>Family Focused</h3>
       <p>We partner closely with parents through open communication, family events, and a welcoming community where every family feels known and valued.</p>
     </div>
-    <div class="about-card schedule-card">
-      <div class="icon">S</div>
-      <h3>Weekly Schedule</h3>
-      <ul class="schedule-list">
-        <li><span>Monday</span><span class="day-tag home">Home</span></li>
-        <li><span>Tuesday</span><span class="day-tag campus">Campus</span></li>
-        <li><span>Wednesday</span><span class="day-tag campus">Campus</span></li>
-        <li><span>Thursday</span><span class="day-tag home">Home</span></li>
-        <li><span>Friday</span><span class="day-tag campus">Campus</span></li>
-      </ul>
+  </div>
+  <div class="schedule-bar">
+    <h3>Weekly Schedule</h3>
+    <div class="schedule-table">
+      <div class="schedule-item"><span class="day-name">Monday</span><span class="day-tag home">Home</span></div>
+      <div class="schedule-item"><span class="day-name">Tuesday</span><span class="day-tag campus">Campus</span></div>
+      <div class="schedule-item"><span class="day-name">Wednesday</span><span class="day-tag campus">Campus</span></div>
+      <div class="schedule-item"><span class="day-name">Thursday</span><span class="day-tag home">Home</span></div>
+      <div class="schedule-item"><span class="day-name">Friday</span><span class="day-tag campus">Campus</span></div>
     </div>
   </div>
   <div class="video-placeholder">
