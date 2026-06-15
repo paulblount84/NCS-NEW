@@ -94,59 +94,63 @@
     background:linear-gradient(
       100deg,
       var(--bronze) 0%,
-      var(--bronze) 35%,
-      var(--red) 50%,
-      var(--bronze) 65%,
+      var(--bronze) 40%,
+      #ffe9b8 48%,
+      #fff6e0 50%,
+      #ffe9b8 52%,
+      var(--bronze) 60%,
       var(--bronze) 100%
     );
-    background-size:250% 100%;
+    background-size:300% 100%;
     background-position:100% 0;
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
-    animation:shimmer 7s ease-in-out infinite;
+    animation:shimmer 9s ease-in-out infinite;
   }
   .hero p.tagline::after{
     content:"✦";
     position:absolute;
-    right:-32px;
+    right:-38px;
     top:50%;
     transform:translateY(-50%) scale(0) rotate(0deg);
     color:var(--red);
-    font-size:1.6rem;
-    text-shadow:0 0 8px #fff, 0 0 18px var(--bronze-light), 0 0 28px rgba(200,16,46,0.5);
-    animation:sparkle-pop 7s ease-in-out infinite;
+    font-size:2.1rem;
+    text-shadow:0 0 10px #fff, 0 0 24px var(--bronze-light), 0 0 40px rgba(200,16,46,0.65), 0 0 60px rgba(200,16,46,0.35);
+    animation:sparkle-pop 9s ease-in-out infinite;
+    z-index:2;
   }
   .hero p.tagline::before{
     content:"✦";
     position:absolute;
-    right:-14px;
-    top:18%;
+    right:-16px;
+    top:14%;
     transform:translateY(-50%) scale(0) rotate(0deg);
     color:var(--bronze);
-    font-size:0.8rem;
-    text-shadow:0 0 6px #fff, 0 0 12px var(--bronze-light);
-    animation:sparkle-pop-small 7s ease-in-out infinite;
+    font-size:1.05rem;
+    text-shadow:0 0 8px #fff, 0 0 16px var(--bronze-light), 0 0 28px rgba(176,125,79,0.5);
+    animation:sparkle-pop-small 9s ease-in-out infinite;
+    z-index:2;
   }
   @keyframes shimmer{
-    0%   { background-position:160% 0; }
-    55%  { background-position:-40% 0; }
-    100% { background-position:-40% 0; }
+    0%   { background-position:200% 0; }
+    65%  { background-position:-100% 0; }
+    100% { background-position:-100% 0; }
   }
   @keyframes sparkle-pop{
-    0%, 48%   { opacity:0; transform:translateY(-50%) scale(0.2) rotate(-20deg); }
-    58%       { opacity:1; transform:translateY(-50%) scale(1.6) rotate(15deg); }
-    68%       { opacity:1; transform:translateY(-50%) scale(1.1) rotate(0deg); }
-    85%, 100% { opacity:0; transform:translateY(-50%) scale(0.2) rotate(20deg); }
+    0%, 48%   { opacity:0; transform:translateY(-50%) scale(0.1) rotate(-30deg); }
+    58%       { opacity:1; transform:translateY(-50%) scale(2.1) rotate(20deg); }
+    68%       { opacity:1; transform:translateY(-50%) scale(1.3) rotate(0deg); }
+    85%, 100% { opacity:0; transform:translateY(-50%) scale(0.1) rotate(25deg); }
   }
   @keyframes sparkle-pop-small{
-    0%, 52%   { opacity:0; transform:translateY(-50%) scale(0.2) rotate(10deg); }
-    62%       { opacity:1; transform:translateY(-50%) scale(1.4) rotate(-15deg); }
-    72%       { opacity:1; transform:translateY(-50%) scale(0.9) rotate(0deg); }
-    88%, 100% { opacity:0; transform:translateY(-50%) scale(0.2) rotate(-10deg); }
+    0%, 52%   { opacity:0; transform:translateY(-50%) scale(0.1) rotate(15deg); }
+    62%       { opacity:1; transform:translateY(-50%) scale(1.9) rotate(-20deg); }
+    72%       { opacity:1; transform:translateY(-50%) scale(1.1) rotate(0deg); }
+    88%, 100% { opacity:0; transform:translateY(-50%) scale(0.1) rotate(-15deg); }
   }
   @media (prefers-reduced-motion: reduce){
-    .hero p.tagline{ animation:none; background-position:-40% 0; }
+    .hero p.tagline{ animation:none; background-position:-100% 0; }
     .hero p.tagline::after{ animation:none; opacity:1; transform:translateY(-50%) scale(1) rotate(0deg); }
     .hero p.tagline::before{ animation:none; opacity:1; transform:translateY(-50%) scale(1) rotate(0deg); }
   }
@@ -755,8 +759,8 @@
     .hero img.crest{ height:130px; margin-bottom:18px; }
     .hero h1{ font-size:1.7rem; line-height:1.2; }
     .hero p.tagline{ font-size:1.05rem; }
-    .hero p.tagline::after{ right:-14px; font-size:1.2rem; }
-    .hero p.tagline::before{ right:-2px; font-size:0.65rem; }
+    .hero p.tagline::after{ right:-18px; font-size:1.6rem; }
+    .hero p.tagline::before{ right:-2px; font-size:0.9rem; }
     .hero-buttons{
       display:flex;
       flex-direction:column;
