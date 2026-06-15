@@ -309,8 +309,8 @@
     font-family:'Trebuchet MS',sans-serif;
   }
   .day-tag.home{
-    background:#f3eee9;
-    color:#9a8b84;
+    background:var(--bronze);
+    color:#fff;
   }
   .day-tag.campus{
     background:var(--red);
@@ -363,10 +363,10 @@
 
   /* STATS BANNER */
   .stats-banner{
-    max-width:900px;
+    max-width:500px;
     margin:56px auto 0;
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1fr;
     gap:32px;
     padding-top:48px;
     border-top:1px solid var(--grey-line);
@@ -577,6 +577,39 @@
     color:var(--bronze);
     font-family:'Trebuchet MS',sans-serif;
     font-weight:600;
+  }
+
+  /* ENROLL CTA */
+  .enroll-cta{
+    text-align:center;
+    background:linear-gradient(135deg, #fdf6f2 0%, #fff 100%);
+    border-top:1px solid var(--grey-line);
+    border-bottom:1px solid var(--grey-line);
+  }
+  .enroll-cta h2{
+    font-size:2rem;
+    color:var(--red);
+    margin-bottom:14px;
+  }
+  .enroll-cta p{
+    max-width:560px;
+    margin:0 auto 28px;
+    font-size:1.05rem;
+    color:#5a4d47;
+  }
+  .enroll-cta a{
+    display:inline-block;
+    padding:14px 36px;
+    border-radius:6px;
+    font-family:'Trebuchet MS',sans-serif;
+    font-weight:700;
+    text-decoration:none;
+    font-size:0.95rem;
+    transition:transform 0.15s, box-shadow 0.15s;
+  }
+  .enroll-cta a:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 14px rgba(0,0,0,0.12);
   }
 
   /* DONATE */
@@ -868,9 +901,9 @@
       <p>Families, teachers, and students work together to create a supportive home away from home.</p>
     </div>
     <div class="about-card">
-      <div class="icon">F</div>
-      <h3>Family Focused</h3>
-      <p>We partner closely with parents through open communication, family events, and a welcoming community where every family feels known and valued.</p>
+      <div class="icon">P</div>
+      <h3>Parent Partnership</h3>
+      <p>We partner closely with parents through open communication, school events, and a welcoming community where every student feels known and valued.</p>
     </div>
   </div>
   <div class="schedule-bar">
@@ -894,10 +927,6 @@
       <div class="stat-number" id="ratioCount" data-target="10">0<span>:1</span></div>
       <p>Student-to-teacher ratio — sometimes even smaller — so we can focus on each student's strengths and help them build their full potential.</p>
     </div>
-    <div class="stat-item">
-      <div class="stat-number" id="enrollmentCount" data-target="30">0</div>
-      <p>Students enrolled school wide, giving every child the personal attention they deserve.</p>
-    </div>
   </div>
 </section>
 
@@ -918,7 +947,7 @@
       <li>
         <div>
           <h3>Tour the Campus</h3>
-          <p>Visit Northridge with your family to meet teachers, see classrooms, and experience our community firsthand.</p>
+          <p>Visit Northridge to meet teachers, see classrooms, and experience our community firsthand.</p>
         </div>
       </li>
       <li>
@@ -946,7 +975,6 @@
         <li><span>Application Fee</span><span>$50</span></li>
         <li><span>Kindergarten – Grade 5</span><span>Open</span></li>
         <li><span>Grade 6 – Grade 8</span><span>Open</span></li>
-        <li><span>Application Deadline</span><span>March 1</span></li>
       </ul>
       <a href="#">Start Your Application</a>
     </div>
@@ -973,7 +1001,7 @@
   </div>
   <div class="tuition-note">
     <h3>Tuition Support</h3>
-    <p>We believe a Northridge education should be within reach for every family. Tuition assistance is available on a case-by-case basis — please contact our admissions office to discuss your family's needs.</p>
+    <p>We believe a Northridge education should be within reach for every student. Tuition assistance is available on a case-by-case basis — please contact our admissions office to discuss your needs.</p>
   </div>
 </section>
 
@@ -1010,6 +1038,12 @@
       <p>Second &amp; Third Grade</p>
     </div>
   </div>
+</section>
+
+<section class="enroll-cta">
+  <h2>Ready to Enroll?</h2>
+  <p>Join NCS and give your child a place to grow in faith, character, and academics.</p>
+  <a href="#admissions" class="btn-primary">Apply Now</a>
 </section>
 
 <section id="donate" class="donate-section">
@@ -1089,7 +1123,7 @@
     observer.observe(counter);
   }
 
-  ['enrollmentCount', 'ratioCount'].forEach(id => {
+  ['ratioCount'].forEach(id => {
     const el = document.getElementById(id);
     if (el) animateCounter(el);
   });
