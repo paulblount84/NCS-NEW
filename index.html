@@ -280,6 +280,15 @@
     text-align:center;
     color:var(--ink);
     font-size:1.1rem;
+    margin-bottom:6px;
+  }
+  .schedule-subtitle{
+    text-align:center;
+    color:var(--bronze);
+    font-family:'Trebuchet MS',sans-serif;
+    font-weight:600;
+    font-size:0.85rem;
+    letter-spacing:0.5px;
     margin-bottom:24px;
   }
   .schedule-table{
@@ -491,9 +500,9 @@
   /* TUITION */
   .tuition-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:32px;
-    max-width:800px;
+    max-width:1100px;
     margin:0 auto 32px;
   }
   .tuition-card{
@@ -526,6 +535,68 @@
     font-size:0.92rem;
     color:#6b5e58;
   }
+
+  /* EXPANDABLE TK CARD */
+  .tuition-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin:18px auto 0;
+    background:#fff;
+    border:2px solid var(--bronze);
+    color:var(--bronze);
+    font-family:'Trebuchet MS',sans-serif;
+    font-weight:700;
+    font-size:0.85rem;
+    padding:9px 20px;
+    border-radius:24px;
+    cursor:pointer;
+    transition:background 0.2s, color 0.2s;
+    animation:toggle-attention 2.5s ease-in-out infinite;
+  }
+  .tuition-toggle:hover,
+  .tuition-toggle[aria-expanded="true"]{
+    background:var(--bronze);
+    color:#fff;
+  }
+  .tuition-arrow{
+    transition:transform 0.25s ease;
+  }
+  .tuition-toggle[aria-expanded="true"] .tuition-arrow{
+    transform:rotate(180deg);
+  }
+  @keyframes toggle-attention{
+    0%, 100% { box-shadow:0 0 0 0 rgba(176,125,79,0.35); }
+    50%      { box-shadow:0 0 0 8px rgba(176,125,79,0); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .tuition-toggle{ animation:none; }
+  }
+  .tuition-details{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    opacity:0;
+    margin-top:0;
+  }
+  .tuition-details.open{
+    max-height:120px;
+    opacity:1;
+    margin-top:16px;
+  }
+  .tuition-details p{
+    background:#fff;
+    border:1px solid var(--grey-line);
+    border-radius:8px;
+    padding:12px 16px;
+    font-size:0.9rem;
+    color:var(--ink);
+  }
+  .tuition-details strong{
+    color:var(--red);
+  }
+
   .tuition-note{
     max-width:760px;
     margin:0 auto;
@@ -912,6 +983,7 @@
   </div>
   <div class="schedule-bar">
     <h3>Weekly Schedule</h3>
+    <p class="schedule-subtitle">Grades K-8 Only</p>
     <div class="schedule-table">
       <div class="schedule-item"><span class="day-name">Monday</span><span class="day-tag home">Home</span></div>
       <div class="schedule-item"><span class="day-name">Tuesday</span><span class="day-tag campus">Campus</span></div>
@@ -994,13 +1066,27 @@
   <div class="tuition-grid">
     <div class="tuition-card">
       <div class="tuition-grade">Kindergarten – Grade 5</div>
-      <div class="tuition-amount">$4,500<span>/year</span></div>
+      <div class="tuition-amount">$4,720<span>/year</span></div>
       <p>Can be paid in full or spread across 10 monthly payments for added flexibility.</p>
     </div>
     <div class="tuition-card">
       <div class="tuition-grade">Grade 6 – Grade 8</div>
-      <div class="tuition-amount">$5,000<span>/year</span></div>
+      <div class="tuition-amount">$5,960<span>/year</span></div>
       <p>Can be paid in full or spread across 10 monthly payments for added flexibility.</p>
+    </div>
+    <div class="tuition-card tuition-card-expandable" id="tkCard">
+      <div class="tuition-grade">TK Education</div>
+      <div class="tuition-amount">$1,950<span>/year</span></div>
+      <p>Can be paid in full or spread across 10 monthly payments for added flexibility.</p>
+      <button class="tuition-toggle" id="tkToggle" aria-expanded="false">
+        <span>View Schedule</span>
+        <svg class="tuition-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 4L7 9L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="tuition-details" id="tkDetails">
+        <p>TK students attend campus on <strong>Wednesdays and Fridays</strong>.</p>
+      </div>
     </div>
   </div>
   <div class="tuition-note">
@@ -1147,6 +1233,17 @@
         menuToggle.classList.remove('open');
         menuToggle.setAttribute('aria-expanded', 'false');
       });
+    });
+  }
+
+  // TK tuition schedule toggle
+  const tkToggle = document.getElementById('tkToggle');
+  const tkDetails = document.getElementById('tkDetails');
+  if (tkToggle && tkDetails) {
+    tkToggle.addEventListener('click', () => {
+      const isOpen = tkDetails.classList.toggle('open');
+      tkToggle.setAttribute('aria-expanded', isOpen);
+      tkToggle.querySelector('span').textContent = isOpen ? 'Hide Schedule' : 'View Schedule';
     });
   }
 </script>
