@@ -231,3 +231,17 @@ footer .crest-small{height:50px;margin-bottom:12px;opacity:0.85;}
   .page-header{padding:40px 6% 36px;}
   .page-header h1{font-size:1.9rem;}
 }
+
+/* Clickable brand logo */
+.brand{ text-decoration:none; }
+.brand:hover span{ text-decoration:underline; }
+
+/* Preview icon letters */
+.preview-icon-text{
+  width:64px;height:64px;border-radius:50%;background:var(--red);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 18px;
+  font-family:'Trebuchet MS',sans-serif;font-weight:700;
+  font-size:1.3rem;color:#fff;letter-spacing:1px;
+}
+.preview-icon-text.bronze{ background:var(--bronze); }
